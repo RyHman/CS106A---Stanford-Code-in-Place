@@ -1,0 +1,72 @@
+from karel.stanfordkarel import * 
+
+"""
+File: MidpointKarel.py
+----------------------
+When you finish writing it, MidpointKarel should
+leave a beeper on the corner closest to the center of 1st Street
+(or either of the two central corners if 1st Street has an even
+number of corners).  Karel can put down additional beepers as it
+looks for the midpoint, but must pick them up again before it
+stops.  The world may be of any size, but you are allowed to
+assume that it is at least as tall as it is wide.
+"""
+
+
+def main():
+    mark_bounds()
+    out_middle()
+    clean_up()
+
+
+def mark_bounds():
+    put_beeper()
+    while front_is_clear():
+        move()
+        if front_is_blocked():
+            put_beeper()
+    turn_around()
+    '''
+    Starting Condition: Karel is at 1,1 facing East
+    Ending Condition: Karel is at the far wall, turned 180 degrees, and has put a beeper at both walls
+    '''
+
+def out_middle():
+    while front_is_clear():
+        move()
+        if beepers_present():
+            pick_beeper()
+            turn_around()
+            move()
+            put_beeper()
+    '''
+    Instead of middle-out, we're going out-middle.
+    
+    Starting Condition: Facing away from a wall and a beeper is present
+    Ending Condition: Karel is at a wall, with two beepers placed in the midpoint of row 1
+    '''
+
+def clean_up():
+    if front_is_blocked():
+        turn_around()
+        while no_beepers_present():
+            move()
+            if beepers_present():
+                pick_beeper()
+    '''
+    Starting Condition: Karel facing and at a wall, with 2 beepers located at middle of row 1
+    Ending Condition: Karel at middle of row 1, with 1 beeper present
+    '''
+
+def turn_around():
+    turn_left()
+    turn_left()
+    '''
+    Starting Condition: Karel facing X direction
+    Ending Condition: Karel facing X direction + 180 degrees 
+    '''
+
+# There is no need to edit code beyond this point
+
+if __name__ == "__main__":
+    run_karel_program()
