@@ -1,1 +1,86 @@
+from karel.stanfordkarel import *
+
+"""
+File: StoneMasonKarel.py
+------------------------
+When you finish writing code in this file, StoneMasonKarel should 
+solve the "repair the quad" problem from Assignment 1. You
+should make sure that your program works for all of the 
+sample worlds supplied in the starter folder.
+"""
+
+
+def main():
+    while front_is_clear():
+        repair_column()
+        move_to_column()
+
+    if front_is_blocked():
+        repair_column()
+
+'''
+Starting Condition: Karel at base of first column, facing East
+Ending Condition: Karel moves from column to column, repairing as he goes, until he reaches the end of the world, where he will complete one last repair loop
+'''
+
+def repair_column():
+    turn_left()
+    repair()
+    climb_down()
+
+'''
+Starting Condition: Karel at base of column facing East
+Ending Condition: Karel moves up the column, repairing, and returns to the base of the column, and turns to face East
+'''
+
+def repair():
+    while front_is_clear():
+        patch_column()
+        move()
+    if front_is_blocked():
+        patch_column()
+'''
+Starting Condition: Karel is at column, facing North
+Ending Condition: Karel moves 'up' the column and places beepers where beepers are missing. Karel is facing North.
+'''
+
+def patch_column():
+    if no_beepers_present():
+        put_beeper()
+
+'''
+Starting Condition: Karel is at a location and checks if beeper is present
+Ending Condition: Karel is at the same location and has put a beeper down if no beeper was present
+'''
+
+def climb_down():
+    turn_around()
+    while front_is_clear():
+        move()
+    turn_left()
+
+'''
+Starting Condition: Karel is at the top of a 'repaired' column
+Ending Condition: Karel is at the base of a 'repaired' and turns to face East
+'''
+def move_to_column():
+    for i in range(4):
+        move()
+
+'''
+Starting Condition: Karel is 4 spaces away from the next column
+Ending Condition: Karel is at the base of the next column
+'''
+def turn_around():
+    turn_left()
+    turn_left()
+
+'''
+Starting Condition: Karel is facing direction X
+Ending Condition: Karel is facing direction X + 180 degrees
+'''
+# There is no need to edit code beyond this point
+
+if __name__ == "__main__":
+    run_karel_program()
 
