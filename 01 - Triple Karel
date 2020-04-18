@@ -1,0 +1,77 @@
+from karel.stanfordkarel import *
+
+"""
+File: TripleKarel.py
+--------------------
+When you finish writing this file, TripleKarel should be
+able to paint the exterior of three buildings in a given
+world, as described in the Assignment 1 handout. You
+should make sure that your program works for all of the 
+Triple sample worlds supplied in the starter folder.
+"""
+
+
+def main():
+    paint_world()
+    turn_left()
+
+'''
+Starting Condition: Karel at correct starting location to paint three walls of all buildings
+Ending Condition: Karel turns left to match end orientation condition
+'''
+
+def paint_world():
+    for i in range(3):
+        paint_building()
+        next_building()
+
+'''
+Starting Condition: Karel at correct starting location to paint a building and move to next building i times
+Ending Condition: Karel paints last wall, turns left, and move one
+'''
+
+def paint_building():
+    for i in range(3):
+        paint_wall()
+        if left_is_clear():
+            turn_left()
+            move()
+
+'''
+Starting Condition: Karel at starting location to paint three sides of a building
+Ending Condition: Karel at end of third wall, turn left, and move one
+'''
+
+def paint_wall():
+    while left_is_blocked():
+        put_beeper()
+        move()
+
+'''
+Starting Condition: Karel at correct starting location to paint wall on left of any length
+Ending Condition: Karel at one unit past wall on left end
+'''
+
+def next_building():
+    turn_around()
+    move()
+
+'''
+Starting Condition: Karel completes paint_wall, but out of position for new building
+Ending Condition: Karel moves to correct starting condition at new building
+'''
+
+def turn_around():
+    turn_left()
+    turn_left()
+
+'''
+Starting Condition: Karel facing X direction
+Ending Condition: Karel facing X direction + 180 degrees
+'''
+
+
+# There is no need to edit code beyond this point
+
+if __name__ == "__main__":
+    run_karel_program()
