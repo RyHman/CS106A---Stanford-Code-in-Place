@@ -1,0 +1,42 @@
+"""
+File: khansole_academy.py
+-------------------------
+Add your comments here.
+"""
+
+import random
+
+rand_num_min = 10
+rand_num_max = 99
+correct_guess_count = 0
+
+def main():
+    while correct_guess_count < 3:
+        addition_excercise()
+    print("Congratulations, you're on your way to mastering addition!")
+
+'''
+Starting Condition: In while loop
+Ending Condition: User has made three correct submissions in a row
+'''
+
+def addition_excercise():
+    global correct_guess_count
+    addition_msg = "What is {} + {}?\n"
+    correct_msg = "That's Correct!\nYou've solved {} in a row!"
+    incorrect_msg = "Unfortunatley that's incorrect. The correct answer was {}."
+    num_1 = random.randint(rand_num_min, rand_num_max)
+    num_2 = random.randint(rand_num_min, rand_num_max)
+    solution = num_1 + num_2
+    user_input = int(input(addition_msg.format(num_1, num_2)))
+    if user_input == solution:
+        correct_guess_count += 1
+        print(correct_msg.format(correct_guess_count))
+    else:
+        print(incorrect_msg.format(solution))
+
+'''====================End===================='''
+# This provided line is required at the end of a Python file
+# to call the main() function.
+if __name__ == '__main__':
+    main()
