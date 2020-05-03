@@ -1,0 +1,85 @@
+"""
+File: nimm.py
+-------------------------
+Add your comments here.
+"""
+
+stone_pile = 20
+player_turn = 1
+
+def main():
+    intro()
+    while stone_pile > 0:
+        game_condition()
+        win_check()
+
+
+'''
+Starting Condition: None
+Ending Condition: Stone pile has reduced by player choice, player turn count has increased
+'''
+def game_condition():
+    global stone_pile
+    stone_msg = " =====================================\n|   There are {} stones in the pile   |\n ===================================== "
+    stone_msg_1 = " =====================================\n|   There is {} stone in the pile   |\n ===================================== "
+    if stone_pile > 1:
+        print(stone_msg.format(stone_pile))
+    else:
+        print(stone_msg_1.format(stone_pile))
+    player_input = player_input_loop()
+    stone_pile -= player_input
+
+
+
+'''
+Starting Condition: In game condition
+Ending Condition: returns player input
+'''
+def player_input_loop():
+    global player_turn
+    player_msg = "{}, would like to take 1 or 2 stones?\n"
+    invalid_msg = "Invalid input. Please enter 1 or 2.\n"
+    if player_turn % 2 == 0:
+            player_input = int(input(player_msg.format("Player 2")))
+            while player_input != 1 and player_input != 2:
+                player_input = int(input(invalid_msg))
+    else:
+        player_input = int(input(player_msg.format("Player 1")))
+        while player_input != 1 and player_input != 2:
+            player_input = int(input(invalid_msg))
+    player_turn += 1
+    return player_input
+
+def win_check():
+    win_msg = "Congrations {}! You've won!"
+    lose_msg = "{}, you've taken the last stone!"
+    if stone_pile < 1:
+        if player_turn % 2 == 0:
+            print(lose_msg.format("Player 1"))
+            print()
+            print(win_msg.format("Player 2"))
+        else:
+            print(lose_msg.format("Player 2"))
+            print()
+            print(win_msg.format("Player 1"))
+'''
+Starting Condition: In game condition
+Ending Condition: returns player input
+'''
+def intro():
+    print("=============================================================================")
+    print("Welcome to Nimm!")
+    print(".............................................................................")
+    print("The loser of the game is the person who takes the last Stone off of the Pile!")
+    print("The game starts with 20 Stones in the Pile.")
+    print("Players take turns taking stones from the Pile.\nEach turn a player must take either 1 or 2 stones.")
+    print("============================================================================")
+    print()
+    print(rock_pile)
+
+rock_pile = "                  o8\n                oO0Oo\n              o0Oo08Oo\n      ..,.oo0(O0o)o()08ooo,,.,."
+
+# This provided line is required at the end of a Python file
+# to call the main() function.
+if __name__ == '__main__':
+    main()
