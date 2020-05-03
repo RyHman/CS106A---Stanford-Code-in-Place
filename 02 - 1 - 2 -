@@ -1,0 +1,34 @@
+"""
+File: random_numbers.py
+-----------------------
+This program prints a series of random numbers in the
+range from MIN_RANDOM to MAX_RANDOM, inclusive
+"""
+
+import random
+
+MIN_RANDOM = 0
+NUM_RANDOM = 10
+MAX_RANDOM = 100
+
+def main():
+    get_rand(NUM_RANDOM, MIN_RANDOM, MAX_RANDOM)
+
+'''====================Sandcastles - B===================='''
+
+'''
+Starting Condition: inputs for NUM_RANDOM, MIN_RANDOM, MAX_RANDOM
+Ending Condition: Prints NUM_RANDOM random ints of values between MIN_RANDOM and MAX_RANDOM
+'''
+def get_rand(num_ints, min, max):
+    for x in range(num_ints):
+        x = random.randint(min, max)
+        print(x)
+
+
+
+'''====================End===================='''
+# This provided line is required at the end of a Python file
+# to call the main() function.
+if __name__ == '__main__':
+    main()
