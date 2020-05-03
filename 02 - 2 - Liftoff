@@ -1,0 +1,31 @@
+"""
+File: liftoff.py
+----------------------
+This program writes out the calls for a spaceship that is about to launch.
+It counts down the numbers from 10 to 1 and then writes “Liftoff!”
+"""
+
+
+def main():
+    lift_off(10)
+
+'''====================Sandcastles - C===================='''
+'''
+Starting Condition: User passes desired range of countdown into function
+Ending Condition: Prints countdown sequence and 'Lifetoff!', returns nothing
+'''
+
+def lift_off(countdown_start):
+    x = countdown_start
+    for i in range(x):
+        print(x)
+        x-= 1
+    print("Liftoff!")
+
+
+
+'''====================End===================='''
+# This provided line is required at the end of a Python file
+# to call the main() function.
+if __name__ == "__main__":
+    main()
